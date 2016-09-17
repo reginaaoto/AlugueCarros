@@ -3,6 +3,8 @@
 namespace AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,11 +17,30 @@ class VeiculoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('marca')
+            ->add('marca', ChoiceType::class, array(
+                'choices'  => array(
+                    'Selecione' => 0,
+                    'Renault' => 'Renault',
+                    'Ford' => 'Ford',
+                    'VW' => 'VW',
+                ),
+            ))
             ->add('modelo')
-            ->add('ano')
-            ->add('cor')
+            ->add('ano', DateType::class, array(
+                'format' => 'yyyy-MM-dd',
+            ))
+            ->add('cor', ChoiceType::class, array(
+                'choices'  => array(
+                    'Azul' => 'Azul',
+                    'Preto' => 'Preto',
+                    'Branco' => 'Branco',
+                    'Vermelho' => 'Vermelho',
+                ),
+                'expanded' => true,
+                'multiple' => false
+            ))
             ->add('categoria')
+            ->add('cidade')
         ;
     }
     

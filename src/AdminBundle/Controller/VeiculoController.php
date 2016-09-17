@@ -28,7 +28,7 @@ class VeiculoController extends Controller
 
         $veiculos = $em->getRepository('AdminBundle:Veiculo')->findAll();
 
-        return $this->render('veiculo/index.html.twig', array(
+        return $this->render('AdminBundle:Veiculo:index.html.twig', array(
             'veiculos' => $veiculos,
         ));
     }
@@ -36,7 +36,7 @@ class VeiculoController extends Controller
     /**
      * Creates a new Veiculo entity.
      *
-     * @Route("/new", name="veiculo_new")
+     * @Route("/novo", name="veiculo_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -53,7 +53,7 @@ class VeiculoController extends Controller
             return $this->redirectToRoute('veiculo_show', array('id' => $veiculo->getId()));
         }
 
-        return $this->render('veiculo/new.html.twig', array(
+        return $this->render('AdminBundle:Veiculo:new.html.twig', array(
             'veiculo' => $veiculo,
             'form' => $form->createView(),
         ));
@@ -69,7 +69,7 @@ class VeiculoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($veiculo);
 
-        return $this->render('veiculo/show.html.twig', array(
+        return $this->render('AdminBundle:Veiculo:show.html.twig', array(
             'veiculo' => $veiculo,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -95,7 +95,7 @@ class VeiculoController extends Controller
             return $this->redirectToRoute('veiculo_edit', array('id' => $veiculo->getId()));
         }
 
-        return $this->render('veiculo/edit.html.twig', array(
+        return $this->render('AdminBundle:Veiculo:edit.html.twig', array(
             'veiculo' => $veiculo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

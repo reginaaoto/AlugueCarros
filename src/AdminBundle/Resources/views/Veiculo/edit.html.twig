@@ -1,0 +1,12 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block body %}
+    <h1>Alterar Veiculo</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Salvar"  class="btn btn-success"/>
+    {{ form_end(edit_form) }}
+
+
+{% endblock %}

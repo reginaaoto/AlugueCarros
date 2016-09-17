@@ -1,0 +1,13 @@
+{% extends 'base-admin.html.twig' %}
+
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block body %}
+    <h1>Adicionar Veiculo</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Adicionar" class="btn btn-primary"/>
+    {{ form_end(form) }}
+
+{% endblock %}

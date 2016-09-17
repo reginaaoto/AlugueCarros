@@ -25,6 +25,6 @@ class DefaultController extends Controller
      */
     public function testeAction()
     {
-        return new Response("OK!");
+        return new Response("Olá Turma!!!");
     }
 }

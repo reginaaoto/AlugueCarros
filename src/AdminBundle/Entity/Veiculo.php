@@ -3,6 +3,7 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Veiculo 
 {
-     /**
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,6 +24,11 @@ class Veiculo
     private $marca;
     
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *  min=3,
+     *  minMessage = "o modelo é muito pequeno")
+     * 
      * @ORM\Column(type="string", length=40)
      */
     private $modelo;
@@ -42,6 +48,11 @@ class Veiculo
      */
     private $categoria;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="Cidades")
+     * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
+     */
+    private $cidade;
 
     /**
      * Get id
@@ -171,5 +182,29 @@ class Veiculo
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    /**
+     * Set cidade
+     *
+     * @param \AdminBundle\Entity\Cidades $cidade
+     *
+     * @return Veiculo
+     */
+    public function setCidade(\AdminBundle\Entity\Cidades $cidade = null)
+    {
+        $this->cidade = $cidade;
+
+        return $this;
+    }
+
+    /**
+     * Get cidade
+     *
+     * @return \AdminBundle\Entity\Cidades
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
     }
 }
