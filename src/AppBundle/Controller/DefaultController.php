@@ -14,17 +14,47 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager(); //Servico conexao banco de dados
+        
+        $cidades = $em->getRepository('AdminBundle:Cidades')->findAll();
+          
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'listaCidades' => $cidades
         ]);
     }
     
     /**
-     * @Route("/teste")
+     * @Route("/pesquisa")
      */
-    public function testeAction()
+    public function pesquisaAction(Request $request)
     {
-        return new Response("Olá Turma!!!");
+        //var_dump($request);
+        //var_dump($request->get('range'));
+        $em = $this->getDoctrine()->getManager(); //Servico conexao banco de dados
+        
+        $cidade = $request->get('cidade');
+        $range = $request->get('range');
+        
+        $dias = explode("-", $range);
+        
+        $dataInicio = \DateTime::createFromFormat("d/m/Y",trim($dias[0]));
+        $dataFim = \DateTime::createFromFormat("d/m/Y",trim($dias[1]));
+        
+        $carros =  $em->getRepository('AdminBundle:Veiculo')
+                ->findBy(array(
+                    'cidade' => $cidade
+                ));
+        
+        
+        /*$carros =  $em->getRepository('AdminBundle:Veiculo')
+                ->pesquisaVeiculos($cidade,$dataInicio,$dataFim);*/
+        
+        
+        $cidadeSel = $em->getRepository('AdminBundle:Cidades')->find($cidade);
+        
+        return $this->render('default/pesquisa.html.twig',array(
+            "cidade" => $cidadeSel,
+            "listaCarros" => $carros
+       ));
     }
 }
