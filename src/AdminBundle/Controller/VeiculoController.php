@@ -46,6 +46,24 @@ class VeiculoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //$imagem = $form->get('imagem')->getData();
+            
+            /**
+             * @var Symfony\Component\HttFoundation\File\UploadFile $imagem
+             */
+            $imagem = $veiculo->getImagem();
+            
+            //$pasta= "/home/aluno/www/AlugueCarros/web/veiculos";
+            $pasta = $this->getParameter('imagem_dir');
+            
+            $nomeArquivo = uniqid().".".$imagem->guessExtension();
+                    
+            $imagem->move($pasta, $nomeArquivo);
+            
+            $veiculo->setImagem($nomeArquivo);
+            
+            var_dump($imagem);die();
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($veiculo);
             $em->flush();
@@ -78,12 +96,12 @@ class VeiculoController extends Controller
     /**
      * Displays a form to edit an existing Veiculo entity.
      *
-     * @Route("/{id}/edit", name="veiculo_edit")
+     * @Route("/editar/{id}", name="veiculo_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Veiculo $veiculo)
     {
-        $deleteForm = $this->createDeleteForm($veiculo);
+        
         $editForm = $this->createForm('AdminBundle\Form\VeiculoType', $veiculo);
         $editForm->handleRequest($request);
 
@@ -98,7 +116,7 @@ class VeiculoController extends Controller
         return $this->render('AdminBundle:Veiculo:edit.html.twig', array(
             'veiculo' => $veiculo,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        
         ));
     }
 

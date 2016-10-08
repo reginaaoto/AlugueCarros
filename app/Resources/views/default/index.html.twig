@@ -3,24 +3,26 @@
 {% block body %}
        <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-         {# {{dump(listaCidades)}} #}
-      
+
        <h1>Alugue um Carro</h1>
         
-        <form class="form-inline" method="POST" action="/pesquisa">
+       <form class="form-inline" method="POST" action="/pesquisa">
             <div class="form-group">
              
+
               <select name="cidade" class="form-control">
                   {% for cidade in listaCidades %}
-                  <option value="{{ cidade.id }}">{{ cidade.nome }} - {{ cidade.estado }}</option>
-                  {% endfor %}
-              </select>    
-              
-            </div>
-            <div class="input-daterange input-group" id="datepicker">
-                <input type="text" class="form-control" name="range" id="range-dias"/>
+                      <option value="{{ cidade.id }}">{{ cidade.nome }}</option>
+                  {% endfor %}    
+              </select>
                 
             </div>
+            
+            <div class="input-daterange input-group" id="datepicker">
+                <input type="text" class="form-control" name="range" id="range-dias" />
+                
+            </div>
+
             
             <button type="submit" class="btn btn-success">Pesquisar</button>
           </form>
@@ -28,30 +30,28 @@
       </div>
 {% endblock %}
 
-{% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/moment.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/daterangepicker.js')}}"></script>
-    
-    <script type="text/javascript">
-        $(document).ready(function(){
-          var hoje = new Date();
-          var semana = new Date();
-          semana.setHours(168);
-          
-        $('#range-dias').daterangepicker(
-         {
-             locale:{
-                 format:'DD/MM/YYYY'
-             },
-              startDate: hoje,
-              endDate: semana
-           });
-        
-       });
-    </script>
-    
-{% endblock %}
-
-{% block stylesheets %}
-     <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}" />
-{% endblock %}
+ {% block javascripts %}
+     <script type="text/javascript" src="{{ asset('js/moment.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/daterangepicker.js') }}"></script>
+     
+     <script type="text/javascript">
+         $(document).ready(function(){
+         
+            var hoje = new Date();
+            var semana = new Date();
+            semana.setHours(168);
+             $('#range-dias').daterangepicker(
+                {
+                    locale: {
+                      format: 'DD/MM/YYYY'
+                    },
+                    startDate: hoje,
+                    endDate: semana
+                }); 
+         });
+     </script>
+ {% endblock %}
+ 
+ {% block stylesheets %}
+     <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
+ {% endblock %}

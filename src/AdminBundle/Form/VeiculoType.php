@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class VeiculoType extends AbstractType
 {
@@ -41,6 +42,7 @@ class VeiculoType extends AbstractType
             ))
             ->add('categoria')
             ->add('cidade')
+            ->add('imagem', FileType::class)
         ;
     }
     

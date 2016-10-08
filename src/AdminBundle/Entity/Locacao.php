@@ -3,16 +3,13 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="locacao")
  */
-    
-
-class Locacao {
+class Locacao 
+{
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -37,12 +34,13 @@ class Locacao {
     private $dataFinal;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Cliente")
-     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="cpf")
+     * @ORM\ManyToOne(targetEntity="Clientes")
+     * @ORM\JoinColumn(name="clientes_cpf", referencedColumnName="cpf")
      */
     private $cliente;
+    
     public function getId() {
-        return $this->cpf;
+        return $this->id;
     }
 
     public function getVeiculo() {
@@ -86,6 +84,5 @@ class Locacao {
         return $this;
     }
 
-   
-    
+
 }

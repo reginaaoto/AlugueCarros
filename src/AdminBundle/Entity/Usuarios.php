@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AdminBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
@@ -12,12 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Usuarios extends BaseUser
 {
-     /**
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-     protected $id;
+    protected $id;
     
     /**
      * @ORM\Column(type="string", length=80)

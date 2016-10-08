@@ -7,35 +7,35 @@
     <div class="panel panel-primary">
         <div class="panel-body">
             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-                
+            
                 <div class="form-group">
                     <h2>Criar Nova Conta</h2>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="signupName">Usuário</label>
-                    {{ form_widget(form.username,{'attr':{'placeholder':'Nome do usuário'}}) }}
-                    
+                    {{ form_widget(form.username, {'attr': {'placeholder': 'nome do seu usuario'}}) }}
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="signupEmail">Email</label>
                     {{ form_widget(form.email) }}
-                </div>             
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label" for="signupPassword">Senha</label>
-                   {{ form_widget(form.plainPassword.first) }}
+                   {{ form_widget(form.plainPassword.first ) }}
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="signupPasswordagain">Repita a senha</label>
-                   {{ form_widget(form.plainPassword.second) }}
+                    <label class="control-label" for="signupPasswordagain">Repita a Senha</label>
+                   {{ form_widget(form.plainPassword.second ) }}
                 </div>
                 <div class="form-group">
                     <button id="signupSubmit" type="submit" class="btn btn-info btn-block">Criar Conta</button>
                 </div>
+                
                 <hr>
                 <p></p>Já possui conta? <a href="{{ path('fos_user_security_login') }}">Login</a></p>
+            {{ form_end(form) }}
+       
         </div>
+        
     </div>
-       {{ form_end(form)}} 
-</form>     
-</div>
-

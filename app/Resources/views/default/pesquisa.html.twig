@@ -3,30 +3,30 @@
 {% block body %}
     <div class="container">
         <div class="row">
-                
-            <h1>Resultado para a cidade {{ cidade.nome }}</h1>
 
+            <h1>Resultado para a cidade {{ cidade.nome }}</h1>
+            
             <div id="catlist">
                 {% for carro in listaCarros %}
                 <dl>
-                    <dt><img src="http://placehold.it/300x200" alt="Product image" width="93" height="62" /><strong>Ano: {{ carro.ano|date("Y")}}</strong><a href="#">{{ carro.marca }} - {{ carro.modelo }}</a></dt>
+                    <dt><img src="{{asset('veiculos/' ~carro.imagem) }}" alt="Product image" width="120" height="90" /><strong>Ano: {{ carro.ano|date("Y") }}</strong><a href="#">{{ carro.marca }} - {{ carro.modelo }}</a></dt>
                     <dd>
-                        <p>Cor: {{ carro.cor }}</p>
+                        <p>Cor: {{ carro.cor}}</p>
                         <p>Categoria: {{ carro.categoria }}</p>
                         <p>Preço: </p>
+                        
                     </dd>
                 </dl>
                 {% endfor %}
+                
             </div>
 
-        </div>
-    </div>    
 
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
-
-
 
 {% endblock %}
 
@@ -61,8 +61,6 @@
             margin:0 10px 0 0;
             border:1px solid #000;
         }
-        * html dd{height:1%}/* 3px jog*/        
-
+        * html dd{height:1%}/* 3px jog*/
     </style>
-
 {% endblock %}

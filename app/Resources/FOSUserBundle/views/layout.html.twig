@@ -3,11 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+       
         {% block css %}
-        {% endblock css %}    
+        {% endblock css %}
     </head>
     <body>
-        <div class="container">           
+     <div class="container">    
+        
 
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
@@ -23,6 +25,6 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
-        </div>   
+     </div>
     </body>
 </html>

@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @ORM\Table(name="veiculos")
  * @ORM\Entity(repositoryClass="AdminBundle\Entity\VeiculoRepository")
- * 
  */
 class Veiculo 
 {
@@ -55,7 +54,18 @@ class Veiculo
      * @ORM\JoinColumn(name="cidade_id", referencedColumnName="id")
      */
     private $cidade;
+    
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    private $preco;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\Image()
+     */
+    private $imagem;
+    
     /**
      * Get id
      *
@@ -209,4 +219,43 @@ class Veiculo
     {
         return $this->cidade;
     }
+    
+    /**
+     * 
+     * @return type
+     */
+    public function getPreco() {
+        return $this->preco;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    
+    public function getImagem() {
+        return $this->imagem;
+    }
+
+    /**
+     * 
+     * @param type $preco
+     * @return \AdminBundle\Entity\Veiculo
+     */
+    
+    public function setPreco($preco) {
+        $this->preco = $preco;
+        return $this;
+    }
+
+    /**
+     * 
+     * @param string $imagem
+     * @return \AdminBundle\Entity\Veiculo
+     */
+    public function setImagem($imagem) {
+        $this->imagem = $imagem;
+        return $this;
+    }
+
 }
